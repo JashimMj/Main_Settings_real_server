@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    {%for x in companyName%}
+    <title>{{x.Company_Name}}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{x.logo}}">
+    {%endfor%}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="{% static 'my/htmx.js'%}"></script>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+    <div class="row">
+        <div class="col-md-5">
+            <a class="navbar-brand">
+                {%for x in companyName%}
+                <img src="{{x.logo}}" width="5%" alt="">
+                <span style="font-size:24px;font-weight: 800;letter-spacing: 2;">{{x.Company_Name}}</span>
+                {%endfor%}
+            </a>
+        </div>
+
+        <div class="col-md-5">
+            <a class="navbar-brand">
+                {%for x in userprofile%}
+                <img src="{{x.uimages}}" alt="user-img" width="36">
+                <span>{{x.user.username}}</span>
+                {%endfor%}
+            </a>
+            <input class="form-control mr-sm-2" type="search" placeholder="PB-2021-25" aria-label="Search" name="mrserch" hx-get="{%url 'MRUMP'%}" hx-target="#abc" hx-trigger="keyup delay:400ms">
+        </div>
+        <div class="col-md-2">
+            <a href="{%url 'maindashboard'%}" class="btn btn-warning">Back</a>
+        </div>
+    </div>
+
+
+</nav>
+
+<form>
+    {%csrf_token%}
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">mrSerialNumber</th>
+            <th scope="col">officeBranchCode</th>
+            <th scope="col">officeBranchName</th>
+            <th scope="col">mrNumber</th>
+            <th scope="col">mrDate</th>
+            <th scope="col">classInsurance</th>
+            <th scope="col">insuredName</th>
+            <th scope="col">insuredAddress</th>
+            <th scope="col">insuredMobile</th>
+            <th scope="col">insuredEmail</th>
+            <th scope="col">modeOfPayment</th>
+            <th scope="col">paymentDetail</th>
+            <th scope="col">coverNoteNumber</th>
+            <th scope="col">policyNumber</th>
+            <th scope="col">addendumNumber</th>
+            <th scope="col">endorsementNumber</th>
+            <th scope="col">netPremium</th>
+            <th scope="col">vat</th>
+            <th scope="col">stamp</th>
+            <th scope="col">others</th>
+            <th scope="col">totalPremium</th>
+            <th scope="col">chequeDrawnOn</th>
+            <th scope="col">chequeDate</th>
+            <th scope="col">depositDate</th>
+            <th scope="col">depositedToBank</th>
+            <th scope="col">depositedToBranch</th>
+            <th scope="col">depositedToAccountNumber</th>
+            <th scope="col">mfs</th>
+            <th scope="col">mfsAccountNumber</th>
+            <th scope="col">isCoInsurance</th>
+            <th scope="col">isLeader</th>
+            <th scope="col">financingBankName</th>
+            <th scope="col">financingBankAddress</th>
+            <th scope="col">financingBankEmail</th>
+            <th scope="col">financingBankMobile</th>
+            <th scope="col">isMultiDocument</th>
+            <th scope="col">multiDocuments</th>
+            <th scope="col">currency</th>
+            <th scope="col">leaderDocument</th>
+            <th scope="col">paymentReceivedFrom</th>
+            <th scope="col">serviceCharge</th>
+            <th scope="col">coInsurerPremiumAmount</th>
+            <th scope="col">bankGuaranteeNumber</th>
+            <th>Response</th>
+            <th>Click</th>
+        </tr>
+        </thead>
+        <tbody id="abc">
+        {%include 'pages/admin/apis.html'%}
+
+
+        </tbody>
+    </table>
+</form>
+
+
+</body>
+</html>

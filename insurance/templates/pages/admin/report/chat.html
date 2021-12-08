@@ -1,0 +1,13 @@
+{%for x in chat%}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td class="txt-oflo">{{x.chat_box}}</td>
+                                    <td>{{x.mrno}}</td>
+                                    <td class="txt-oflo">{{x.dates}}</td>
+                                    <td><span class="text-success">{{x.branch.Branch_code}}</span></td>
+                                    <td ><span width="410" class="dfr text-success">{{x.comment}}</span></td>
+                                    {% if request.user.is_superuser %}
+                                    <td><a hx-get="{%url 'Acomment' x.id%}" class="hgf btn btn-warning" hx-target=".dfr">Comment</a></td>
+                                    {%endif%}
+                                </tr>
+                                {%endfor%}

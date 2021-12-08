@@ -1,0 +1,86 @@
+{%extends 'dashboard.html'%}
+{%block contant%}
+{%load static%}
+    <style>
+        div.abc {
+        margin: 4px, 4px;
+        padding: 4px;
+<!--        background-color: #08c708;-->
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+    }
+    </style>
+<div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="row">
+                    <!-- Column -->
+                    <!-- Column -->
+                    <!-- Column -->
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form-horizontal form-material"  enctype="multipart/form-data" method="POST" action="{%url 'umpsedPDF'%}" target="_blank">
+                                    {%csrf_token%}
+                                    <div class="row">
+                                    <div class="form-group col-mb-6">
+                                        <label class="col-md-12 p-0">MR From Date</label>
+                                        <div class="col-md-6 border-bottom p-0">
+                                            <input type="date" placeholder="From Date"
+                                                class="form-control p-0 border-0" name="fdate" required> </div>
+                                    </div>
+                                    <div class="form-group col-mb-6">
+                                        <label class="col-md-6 p-0">MR TO Date</label>
+                                        <div class="col-md-6 border-bottom p-0">
+                                            <input type="date" placeholder="To Date"
+                                                class="form-control p-0 border-0" name="tdate" required> </div>
+                                    </div>
+
+
+                                     <div class="form-group col-mb-6">
+                                        <label class="col-md-6 p-0">MR Number</label>
+                                        <div class="col-md-6 border-bottom p-0">
+                                            <input type="text" placeholder="MR NUMBER"
+                                                class="form-control p-0 border-0" name="mrno"> </div>
+                                    </div>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-print" aria-hidden="true" > Print</i></button>
+                                        <button class="btn btn-success" hx-post="{%url 'umpsedp'%}" hx-target=".abc"  hx-encoding="multipart/form-data" >Submit</button>
+                                        <button class="btn btn-success" hx-post="{%url 'mrnoserach'%}" hx-target=".abc"  hx-encoding="multipart/form-data" ><i class="fa fa-id-card" aria-hidden="true"> MR Print</i></button>
+                                        {% if request.user.is_superuser %}
+                                        <button class="btn btn-success" hx-post="{%url 'allreport'%}" hx-target=".abc"  hx-encoding="multipart/form-data" ><i class="fa fa-superpowers" aria-hidden="true">All Branch</i></button>
+                                        {%endif%}
+                                    </div>
+
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+
+                <div class="abc">
+
+                </div>
+            </div>
+
+{%endblock%}

@@ -1,0 +1,23 @@
+{%extends 'dashboard.html'%}
+{%block contant%}
+{%load static%}
+<div class="row justify-content-center">
+
+    <div class="col-lg-4 col-md-12">
+        <a href="{%url 'companyandbranch'%}">
+            <div class="white-box analytics-info">
+                <h3 class="box-title">Company And Branch Information</h3>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <li>
+                        <div id="sparklinedash14">
+<!--                             <img src="{%static 'image/admin.jpg'%}" alt="" class="img-fluid">-->
+                        </div>
+                    </li>
+                    <li class="ms-auto"><span class="counter text-success">659</span></li>
+                </ul>
+            </div>
+        </a>
+    </div>
+
+</div>
+{%endblock%}

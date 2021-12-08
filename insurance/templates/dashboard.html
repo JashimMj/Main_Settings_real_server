@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+{%load static%}
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+          content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+          content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    {%for x in companyName%}
+    <title>{{x.Company_Name}}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{x.logo}}">
+    {%endfor%}
+    <!--    <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />-->
+    <!-- Favicon icon -->
+
+    <!-- Custom CSS -->
+    <link href="{% static 'template/plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet'%}">
+    <link rel="stylesheet"
+          href="{% static 'template/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css'%}">
+    <!-- Custom CSS -->
+    <link href="{% static 'template/css/style.min.css'%}" rel="stylesheet">
+
+    <!--    HTMX-->
+    <script src="{% static 'my/htmx.js'%}"></script>
+</head>
+
+<body>
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+
+    {%include 'decorator/header.html'%}
+
+
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    {%include 'decorator/side.html'%}
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        {%block contant%}
+        <div class="container-fluid">
+
+            <!-- ============================================================== -->
+            <!-- Three charts -->
+            <!-- ============================================================== -->
+            <div class="row justify-content-center">
+                {% if request.user.is_superuser %}
+                <div class="col-lg-4 col-md-12">
+                    <div class="white-box analytics-info">
+                        <h3 class="box-title">Pending Data Sending To IDRA </h3>
+                        <ul class="list-inline two-part d-flex align-items-center mb-0">
+                            <li>
+                                <div id="sparklinedash">
+                                    <canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                </div>
+                            </li>
+                            <li class="ms-auto"><span class="counter text-success">{{send}}</span></li>
+                        </ul>
+                    </div>
+                </div>
+                {%endif%}
+
+                <div class="col-lg-4 col-md-12">
+                    <div class="white-box analytics-info">
+                        <h3 class="box-title">Data Already Sended To IDRA</h3>
+                        <ul class="list-inline two-part d-flex align-items-center mb-0">
+                            <li>
+                                <div id="sparklinedash2">
+                                    <canvas width="67" height="30"
+                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                                </div>
+                            </li>
+                            <li class="ms-auto"><span class="counter text-purple">{{previously}}</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--                    <div class="col-lg-4 col-md-12">-->
+                <!--                        <div class="white-box analytics-info">-->
+                <!--                            <h3 class="box-title">Unique Visitor</h3>-->
+                <!--                            <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+                <!--                                <li>-->
+                <!--                                    <div id="sparklinedash3"><canvas width="67" height="30"-->
+                <!--                                            style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+                <!--                                    </div>-->
+                <!--                                </li>-->
+                <!--                                <li class="ms-auto"><span class="counter text-info">911</span>-->
+                <!--                                </li>-->
+                <!--                            </ul>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+            </div>
+            <!-- ============================================================== -->
+            <!-- PRODUCTS YEARLY SALES -->
+            <!-- ============================================================== -->
+            <!--                <div class="row">-->
+            <!--                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">-->
+            <!--                        <div class="white-box">-->
+            <!--                            <h3 class="box-title">Products Yearly Sales</h3>-->
+            <!--                            <div class="d-md-flex">-->
+            <!--                                <ul class="list-inline d-flex ms-auto">-->
+            <!--                                    <li class="ps-3">-->
+            <!--                                        <h5><i class="fa fa-circle me-1 text-info"></i>Mac</h5>-->
+            <!--                                    </li>-->
+            <!--                                    <li class="ps-3">-->
+            <!--                                        <h5><i class="fa fa-circle me-1 text-inverse"></i>Windows</h5>-->
+            <!--                                    </li>-->
+            <!--                                </ul>-->
+            <!--                            </div>-->
+            <!--                            <div id="ct-visits" style="height: 405px;">-->
+            <!--                                <div class="chartist-tooltip" style="top: -17px; left: -12px;"><span-->
+            <!--                                        class="chartist-tooltip-value">6</span>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!-- ============================================================== -->
+            <!-- RECENT SALES -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="white-box">
+                        <div class="d-md-flex mb-3">
+                            <h3 class="box-title mb-0">Chat Box</h3>
+                            <div class="col-xs-6 ms-auto">
+
+
+                                        <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                               aria-label="Search" name="searchs" hx-get="{%url 'search'%}" hx-target=".abc" hx-trigger="keyup delay:400ms">
+
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table no-wrap">
+                                <thead>
+                                <tr>
+                                    <th class="border-top-0">#</th>
+                                    <th class="border-top-0">Note</th>
+                                    <th class="border-top-0">MR number</th>
+                                    <th class="border-top-0">Date</th>
+                                    <th class="border-top-0">Branch</th>
+                                    <th>Admin Note</th>
+
+                                </tr>
+                                </thead>
+                                <tbody class="abc">
+                                {%for x in chat%}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td class="txt-oflo" width="410">{{x.chat_box}}</td>
+                                    <td>{{x.mrno}}</td>
+                                    <td class="txt-oflo">{{x.dates|date:"d/m/Y h:i"}}</td>
+                                    <td><span class="text-success">{{x.branch.Branch_code}}</span></td>
+                                    <td ><span width="410" class="dfr text-success">{{x.comment}}</span></td>
+                                    {% if request.user.is_superuser %}
+                                    <td><a hx-get="{%url 'Acomment' x.id%}" class="hgf btn btn-warning" hx-target=".dfr">Comment</a></td>
+                                    {%endif%}
+                                </tr>
+                                {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-md-flex ">
+                            <form  hx-post="{%url 'chat'%}" hx-target=".abc">
+                                {%csrf_token%}
+
+                            <input type="text" placeholder="Text" class=" input-group-prepend" name="texs">
+                            <input type="text" placeholder="MR PB-2021-123" class="input-group-prepend" name="mrs">
+                            <input type="submit" value="Send" class="btn btn-success">
+                                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- Recent Comments -->
+            <!-- ============================================================== -->
+
+        </div>
+        {%endblock%}
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        {%include 'decorator/footer.html'%}
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="{% static 'template/plugins/bower_components/jquery/dist/jquery.min.js'%}"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="{% static 'template/bootstrap/dist/js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'template/js/app-style-switcher.js'%}"></script>
+<script src="{% static 'template/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js'%}"></script>
+<!--Wave Effects -->
+<script src="{% static 'template/js/waves.js'%}"></script>
+<!--Menu sidebar -->
+<script src="{% static 'template/js/sidebarmenu.js'%}"></script>
+<!--Custom JavaScript -->
+<script src="{% static 'template/js/custom.js'%}"></script>
+<!--This page JavaScript -->
+<!--chartis chart-->
+<script src="{% static 'template/plugins/bower_components/chartist/dist/chartist.min.js'%}"></script>
+<script src="{% static 'template/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js'%}"></script>
+<script src="{% static 'template/js/pages/dashboards/dashboard1.js'%}"></script>
+</body>
+
+</html>

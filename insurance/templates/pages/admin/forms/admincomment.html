@@ -1,0 +1,7 @@
+{%for x in data%}
+<form hx-post="{%url 'updatea' x.id%}" hx-target=".abc">
+    {%csrf_token%}
+<input type="text" value="{{x.comment}}" name="comment">
+<input type="submit" class="btn btn-warning" value="Send">
+</form>
+{%endfor%}

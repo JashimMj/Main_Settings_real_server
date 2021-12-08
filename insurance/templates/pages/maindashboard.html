@@ -1,0 +1,271 @@
+{%extends 'dashboard.html'%}
+{%block contant%}
+{%load static%}
+<div class="container-fluid">
+<div class="row justify-content-center">
+
+    {% if request.user.is_superuser %}
+    <div class="col-lg-4 col-md-12">
+        <a href="{%url 'umpapi'%}">
+            <div class="white-box analytics-info">
+                <h3 class="box-title">Send MR Without Deposited UMP</h3>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <li>
+                        <div id="sparklinedash14">
+                             <img src="{%static 'image/send.jpg'%}" alt="" class="img-fluid">
+                        </div>
+                    </li>
+                    {%for x in send%}
+                    <li class="ms-auto"><span class="counter text-success">{{x}}</span></li>
+                    {%endfor%}
+                </ul>
+            </div>
+        </a>
+    </div>
+
+{%endif%}
+        {% if request.user.is_superuser %}
+    <div class="col-lg-4 col-md-12">
+        <a href="{%url 'deposit'%}">
+            <div class="white-box analytics-info">
+                <h3 class="box-title">Send MR with Deposited to UMP</h3>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <li>
+                        <div id="sparklinedash15">
+                             <img src="{%static 'image/00e.jpg'%}" alt="" class="img-fluid">
+                        </div>
+                    </li>
+                    {%for x in dep%}
+                    <li class="ms-auto"><span class="counter text-success">{{x}}</span></li>
+                    {%endfor%}
+                </ul>
+            </div>
+        </a>
+    </div>
+
+{%endif%}
+    <div class="col-lg-4 col-md-12">
+        <a href="{%url 'umpapissended'%}">
+            <div class="white-box analytics-info">
+                <h3 class="box-title">Previously Send MR to UMP </h3>
+                <ul class="list-inline two-part d-flex align-items-center mb-0">
+                    <li>
+                        <div id="sparklinedash15">
+                             <img src="{%static 'image/s.jpg'%}" alt="" class="img-fluid">
+                        </div>
+                    </li>
+                    {%for x in previously%}
+                    <li class="ms-auto"><span class="counter text-purple">{{x}}</span></li>
+                    {%endfor%}
+                </ul>
+            </div>
+        </a>
+    </div>
+
+
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">Co-Insurance</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash3">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+
+
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">Claim</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash4">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+
+
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">Re-Insurance</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash5">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+
+
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">Management Information</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash6">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+
+
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">Accounts</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash7">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+
+
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">Payroll</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash8">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">Provident Fund</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash9">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">FDR</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash10">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">Fixed Asset</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash11">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">HR</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash12">-->
+<!--                            <canvas width="67" height="30"-->
+<!--                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <div class="col-lg-4 col-md-12">-->
+<!--        <a href="">-->
+
+<!--            <div class="white-box analytics-info">-->
+<!--                <h3 class="box-title">Inventory</h3>-->
+<!--                <ul class="list-inline two-part d-flex align-items-center mb-0">-->
+<!--                    <li>-->
+<!--                        <div id="sparklinedash13">-->
+<!--                            <img src="{%static 'image/admin.jpg'%}" alt="" class="img-fluid">-->
+
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="ms-auto"><span class="counter text-info">911</span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </a>-->
+<!--    </div>-->
+</div>
+</div>
+{%endblock%}

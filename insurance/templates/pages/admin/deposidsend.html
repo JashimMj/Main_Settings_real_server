@@ -1,0 +1,61 @@
+
+{%for (mrSerialNumber, officeBranchCode, officeBranchName, mrNumber, mrDate, classInsurance, insuredName, insuredAddress, insuredMobile, insuredEmail, modeOfPayment, paymentDetail, coverNoteNumber, policyNumber, addendumNumber, endorsementNumber, netPremium, vat, stamp, others, totalPremium, chequeDrawnOn, chequeDate, depositDate, depositedToBank, depositedToBranch, depositedToAccountNumber, mfs, mfsAccountNumber, isCoInsurance, isLeader, financingBankName, financingBankAddress, financingBankEmail, financingBankMobile, isMultiDocument, multiDocuments, currency, leaderDocument, paymentReceivedFrom, serviceCharge, coInsurerPremiumAmount, bankGuaranteeNumber, requeston, responseon, response, mrURL, umpStatus, depositStatus) in myresults%}
+
+    <tr>
+
+<th scope="row" >{{forloop.counter}}</th>
+      <td>{{mrSerialNumber}}</td>
+      <td>{{officeBranchCode}}</td>
+      <td>{{officeBranchName}}</td>
+      <td>{{mrNumber}}</td>
+      <td>{{mrDate}}</td>
+      <td>{{classInsurance}}</td>
+      <td>{{insuredName}}</td>
+      <td>{{insuredAddress}}</td>
+      <td>{{insuredMobile}}</td>
+      <td>{{insuredEmail}}</td>
+      <td>{{modeOfPayment}}</td>
+      <td>{{paymentDetail}}</td>
+      <td>{{coverNoteNumber}}</td>
+      <td>{{policyNumber}}</td>
+      <td>{{addendumNumber}}</td>
+      <td>{{endorsementNumber}}</td>
+      <td>{{netPremium}}</td>
+      <td>{{vat}}</td>
+      <td>{{stamp}}</td>
+      <td>{{others}}</td>
+      <td>{{totalPremium}}</td>
+      <td>{{chequeDrawnOn}}</td>
+      <td>{{chequeDate}}</td>
+      <td>{{depositDate}}</td>
+      <td>{{depositedToBank}}</td>
+      <td>{{depositedToBranch}}</td>
+      <td>{{depositedToAccountNumber}}</td>
+      <td>{{mfs}}</td>
+      <td>{{mfsAccountNumber}}</td>
+      <td>{{isCoInsurance}}</td>
+      <td>{{isLeader}}</td>
+      <td>{{financingBankName}}</td>
+      <td>{{financingBankAddress}}</td>
+      <td>{{financingBankEmail}}</td>
+      <td>{{financingBankMobile}}</td>
+      <td>{{isMultiDocument}}</td>
+      <td>{{multiDocuments}}</td>
+      <td>{{currency}}</td>
+      <td>{{leaderDocument}}</td>
+      <td>{{paymentReceivedFrom}}</td>
+      <td>{{serviceCharge}}</td>
+      <td>{{coInsurerPremiumAmount}}</td>
+      <td>{{bankGuaranteeNumber}}</td>
+           <th>
+          {% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+      {{ message }}
+</div>
+{%endfor%}
+{%endif%}
+          </th>
+      <td> <input type="checkbox" id="vehicle1" name="vehicle1" value="{{mrNumber}}" hx-post="{%url 'deposit_send'%}" hx-target="#abc"  hx-encoding="multipart/form-data"></td>
+</tr>
+{%endfor%}

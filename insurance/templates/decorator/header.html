@@ -1,0 +1,91 @@
+<style>
+    .topbar .top-navbar .navbar-header {
+    line-height: 17px;
+}
+.left-sidebar {
+    position: absolute;
+    width: 240
+px
+;
+    height: 100%;
+    top: 0
+px
+;
+    z-index: 10;
+    padding-top: 95px;
+px
+;
+    background: #fff;
+    -webkit-box-shadow: 1px 0px 20px rgb(0 0 0 / 8%);
+    box-shadow: 1px 0px 20px rgb(0 0 0 / 8%);
+}
+</style>
+
+<header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin6">
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                     {%for x in companyName%}
+                    <a class="navbar-brand" href="{%url 'index'%}">
+                        <!-- Logo icon -->
+                        <b class="logo-icon" style="text-align:center;padding:0;margin:0;">
+                            <!-- Dark Logo icon -->
+                            <img src="{{x.logo}}" alt="homepage" style="width: 25%;"/>
+                        </b>
+
+                    </a>
+                    <span><b style="padding:0;margin:0;">{{x.Company_Name}}</b></span>
+
+                    {%endfor%}
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+                        href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav ms-auto d-flex align-items-center">
+
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class=" in">
+                            <form role="search" class="app-search d-none d-md-block me-3">
+                                <input type="text" placeholder="Search..." class="form-control mt-0">
+                                <a href="" class="active">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </form>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        {%for x in userprofile%}
+                        <li>
+                            <a class="profile-pic" href="#">
+                                <img src="{{x.uimages}}" alt="user-img" width="36"
+                                    class="img-circle"><span class="text-white font-medium">{{x.user.username}}</span></a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li style="padding-right:10px;"><a href="{%url 'logout'%}" class="btn btn-outline-danger">Logout</a></li>
+                        {%endif%}
+                        {%endfor%}
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>

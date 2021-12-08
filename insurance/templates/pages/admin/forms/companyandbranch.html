@@ -1,0 +1,102 @@
+{%extends 'dashboard.html'%}
+{%block contant%}
+{%load static%}
+<div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-4 col-xlg-3 col-md-12" id="abc">
+                        {%include 'pages/admin/report/company.html'%}
+                    </div>
+                    <!-- Column -->
+                    <!-- Column -->
+
+                    <div class="col-lg-8 col-xlg-9 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="form-horizontal form-material"  enctype="multipart/form-data" method="POST">
+                                    {%csrf_token%}
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Company Name</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="text" placeholder="Company Name"
+                                                class="form-control p-0 border-0" name="cname"> </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Branch Name</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="text" placeholder="Branch Name"
+                                                class="form-control p-0 border-0" name="bname"> </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Branch Address</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="text" placeholder="Branch Address"
+                                                class="form-control p-0 border-0" name="baddress"> </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Branch Short Name</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="text" placeholder="Branch Short Name"
+                                                class="form-control p-0 border-0" name="sname"> </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Phone Number</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="text" placeholder="Phone Number"
+                                                class="form-control p-0 border-0" name="pnumber"> </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Fax Number</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="text" placeholder="Fax Number"
+                                                class="form-control p-0 border-0" name="fnumber"> </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Email Number</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="text" placeholder="Email Number"
+                                                class="form-control p-0 border-0" name="enumber"> </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Branch Code</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="text" placeholder="Branch Code"
+                                                class="form-control p-0 border-0" name="bcode"> </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label class="col-md-12 p-0">Company Logo</label>
+                                        <div class="col-md-12 border-bottom p-0">
+                                            <input type="file" placeholder="Company Logo"
+                                                class="form-control p-0 border-0" name="clogo"> </div>
+                                    </div>
+
+
+
+                                    <div class="form-group mb-4">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success" hx-post="{%url 'companyandbranchsave'%}" hx-target="#abc"  hx-encoding="multipart/form-data" >Update Profile</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+{%endblock%}

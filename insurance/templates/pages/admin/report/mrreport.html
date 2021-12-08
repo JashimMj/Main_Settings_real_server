@@ -1,0 +1,94 @@
+<head>
+    {%for x in companyName%}
+    <title>{{x.Company_Name}}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{x.logo}}">
+    {%endfor%}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</head>
+
+<nav class="navbar navbar-light bg-light">
+    <div class="row">
+        <div class="col-md-5">
+            <a class="navbar-brand">
+                {%for x in companyName%}
+                <img src="{{x.logo}}" width="5%" alt="">
+                <span style="font-size:24px;font-weight: 800;letter-spacing: 2;">{{x.Company_Name}}</span>
+                {%endfor%}
+            </a>
+        </div>
+
+        <div class="col-md-5">
+            <a class="navbar-brand">
+                {%for x in userprofile%}
+                <img src="{{x.uimages}}" alt="user-img" width="36">
+                <span>{{x.user.username}}</span>
+                {%endfor%}
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="{%url 'umpapissended'%}" class="btn btn-warning">Back</a>
+        </div>
+    </div>
+
+
+</nav>
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+      {{ message }}
+</div>
+{%endif%}
+<div class="dds">
+<table class="table table-bordered">
+      <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Branch Code</th>
+      <th scope="col">Branch Name</th>
+      <th scope="col">MR Number</th>
+      <th scope="col">MR Date</th>
+      <th scope="col">Class Insurance</th>
+      <th scope="col">Insured Name</th>
+      <th scope="col">Mode Of Payment</th>
+      <th scope="col">Cover Note No.</th>
+      <th scope="col">Policy No.</th>
+      <th scope="col">Addendum No.</th>
+      <th scope="col">Endorsement No.</th>
+      <th scope="col">Net</th>
+      <th scope="col">Vat</th>
+      <th scope="col">Stamp</th>
+      <th scope="col">Others</th>
+      <th scope="col">Gross</th>
+      <th scope="col">MR URL</th>
+    </tr>
+  </thead>
+      <tbody id="abc">
+{%for (mrSerialNumber, officeBranchCode, officeBranchName, mrNumber, mrDate, classInsurance, insuredName, insuredAddress, insuredMobile, insuredEmail, modeOfPayment, paymentDetail, coverNoteNumber, policyNumber, addendumNumber, endorsementNumber, netPremium, vat, stamp, others, totalPremium, chequeDrawnOn, chequeDate, depositDate, depositedToBank, depositedToBranch, depositedToAccountNumber, mfs, mfsAccountNumber, isCoInsurance, isLeader, financingBankName, financingBankAddress, financingBankEmail, financingBankMobile, isMultiDocument, multiDocuments, currency, leaderDocument, paymentReceivedFrom, serviceCharge, coInsurerPremiumAmount, bankGuaranteeNumber, requeston, responseon, response, mrURL, umpStatus, depositStatus) in myresults%}
+
+    <tr>
+<th scope="row" >{{forloop.counter}}</th>
+      <td>{{officeBranchCode}}</td>
+      <td>{{officeBranchName}}</td>
+      <td>{{mrNumber}}</td>
+      <td>{{mrDate}}</td>
+      <td>{{classInsurance}}</td>
+      <td>{{insuredName}}</td>
+      <td>{{modeOfPayment}}</td>
+      <td>{{coverNoteNumber}}</td>
+      <td>{{policyNumber}}</td>
+      <td>{{addendumNumber}}</td>
+      <td>{{endorsementNumber}}</td>
+      <td>{{netPremium}}</td>
+      <td>{{vat}}</td>
+      <td>{{stamp}}</td>
+      <td>{{others}}</td>
+      <td>{{totalPremium}}</td>
+      <td><a href="{{mrURL}}" target="_blank">{{mrURL}}</a></td>
+</tr>
+      {%endfor%}
+
+  </tbody>
+</table>
+      </div>
