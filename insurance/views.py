@@ -87,7 +87,8 @@ def index(request):
         chat = chatM.objects.all().order_by('-dates')
     else:
         chat=chatM.objects.filter(users=request.user).order_by('-dates')
-    return render(request,'dashboard.html',{'companyName':companyName,'userprofile':userprofile,'send':send,'previously':previously,'chat':chat})
+    branchsss=UserProfileM.objects.values('Branch_code').distinct().order_by('Branch_code')
+    return render(request,'dashboard.html',{'branchsss':branchsss,'companyName':companyName,'userprofile':userprofile,'send':send,'previously':previously,'chat':chat})
 
 @login_required(login_url='/umpapi/login/')
 def maindashboardV(request):
@@ -750,17 +751,17 @@ def chatV(request):
     tex=request.POST.get('texs')
     mr=request.POST.get('mrs')
     us=User.objects.get(username=request.user)
-    pro=UserProfileM.objects.get(user=us)
-    data=chatM(chat_box=tex,mrno=mr,users=us,branch=pro)
-    data.save()
+    pro=UserProfileM.objects.filter(user=us)
+    for x in pro:
+
+        data=chatM(chat_box=tex,mrno=mr,users=us,branch=x.Branch_code)
+        data.save()
     return render(request,'pages/admin/report/chat.html',{'chat':chat})
 
 def searchV(request):
     mrs=request.GET.get('searchs')
-    if request.user.is_superuser:
-        chat = chatM.objects.filter(mrno=mrs).order_by('-dates')
-    else:
-        chat=chatM.objects.filter(users=request.user).order_by('-dates')
+    print(mrs)
+    chat = chatM.objects.filter(branch=mrs).order_by('-dates')
     return render(request, 'pages/admin/report/chat.html', {'chat': chat})
 
 def AcommentV(request,id=0):

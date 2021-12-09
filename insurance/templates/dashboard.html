@@ -163,13 +163,21 @@
                     <div class="white-box">
                         <div class="d-md-flex mb-3">
                             <h3 class="box-title mb-0">Chat Box</h3>
+                             {% if request.user.is_superuser %}
                             <div class="col-xs-6 ms-auto">
+                                <select id="cars" hx-get="{%url 'search'%}" hx-target=".abc"
+                                       hx-trigger="change delay:400ms" name="searchs">
+
+                                    <option value="volvo">Select Branch</option>
+                                    {%for x in branchsss%}
+                                    <option value="{{x.Branch_code}}">{{x.Branch_code}}</option>
+                                    {%endfor%}
+                                </select>
 
 
-                                        <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                                               aria-label="Search" name="searchs" hx-get="{%url 'search'%}" hx-target=".abc" hx-trigger="keyup delay:400ms">
 
                             </div>
+                            {%endif%}
                         </div>
                         <div class="table-responsive">
                             <table class="table no-wrap">
@@ -192,9 +200,10 @@
                                     <td>{{x.mrno}}</td>
                                     <td class="txt-oflo">{{x.dates|date:"d/m/Y h:i"}}</td>
                                     <td><span class="text-success">{{x.branch.Branch_code}}</span></td>
-                                    <td ><span width="410" class="dfr text-success">{{x.comment}}</span></td>
+                                    <td><span width="410" class="dfr text-success">{{x.comment}}</span></td>
                                     {% if request.user.is_superuser %}
-                                    <td><a hx-get="{%url 'Acomment' x.id%}" class="hgf btn btn-warning" hx-target=".dfr">Comment</a></td>
+                                    <td><a hx-get="{%url 'Acomment' x.id%}" class="hgf btn btn-warning"
+                                           hx-target=".dfr">Comment</a></td>
                                     {%endif%}
                                 </tr>
                                 {%endfor%}
@@ -202,13 +211,13 @@
                             </table>
                         </div>
                         <div class="d-md-flex ">
-                            <form  hx-post="{%url 'chat'%}" hx-target=".abc">
+                            <form hx-post="{%url 'chat'%}" hx-target=".abc">
                                 {%csrf_token%}
 
-                            <input type="text" placeholder="Text" class=" input-group-prepend" name="texs">
-                            <input type="text" placeholder="MR PB-2021-123" class="input-group-prepend" name="mrs">
-                            <input type="submit" value="Send" class="btn btn-success">
-                                </form>
+                                <input type="text" placeholder="Text" class=" input-group-prepend" name="texs">
+                                <input type="text" placeholder="MR PB-2021-123" class="input-group-prepend" name="mrs">
+                                <input type="submit" value="Send" class="btn btn-success">
+                            </form>
                         </div>
                     </div>
                 </div>

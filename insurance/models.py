@@ -44,6 +44,9 @@ class UserProfileM(models.Model):
             urls=''
         return urls
 
+    def __str__(self):
+        return self.Branch_code +' ' +self.user.username
+
 
 
 
@@ -53,7 +56,7 @@ class chatM(models.Model):
     mrno=models.CharField(max_length=50,null=True,blank=True)
     dates=models.DateTimeField(auto_now=True)
     users=models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
-    branch=models.ForeignKey(UserProfileM,on_delete=models.CASCADE,null=True,blank=True)
+    branch=models.CharField(max_length=50,null=True,blank=True)
     comment = models.CharField(max_length=1000, null=True, blank=True)
     objects = models.Manager()
 
