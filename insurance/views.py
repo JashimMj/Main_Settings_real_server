@@ -1080,18 +1080,26 @@ def UMP_depositedV(request):
             print(ab.json())
             ur = json.loads(ab.text)
             statuss = ur['status']
-            if statuss != 'False':
-                try:
-                    cdate=datetime.datetime.now().date()
+            print(statuss)
+            afd=ur['message']
+            print(afd)
+            if afd == 'This MR has been updated for depositDate,depositedToBank fields':
+                cdate=datetime.datetime.now().date()
 
-                    mrur = ur["url"]
-                    mycursor.execute("update ump_mr set mrurl=:mrur , umpStatus='Y', sendate=:cdate where mrNumber =:mrNumber", [mrur,cdate, mr[i]])
-                    cnx.commit()
-                    mycursor.execute("update ump_mr set RESPONSE='Y' where mrNumber =:mrNumber and DEPOSITSTATUS ='N'",[mr[i]])
-                    cnx.commit()
-                    messages.info(request, "Data sended")
-                except:
-                    messages.info(request,f"Data Not sended {ur}")
+                mycursor.execute("update ump_mr set RESPONSE='Y' where mrNumber =:mrNumber and DEPOSITSTATUS ='N'",[mr[i]])
+                cnx.commit()
+                messages.info(request,f"Data sended {ur}")
+            else:
+                cdate = datetime.datetime.now().date()
+                mrur = ur["url"]
+                mycursor.execute(
+                    "update ump_mr set mrurl=:mrur , umpStatus='Y', sendate=:cdate where mrNumber =:mrNumber",[mrur, cdate, mr[i]])
+                cnx.commit()
+                mycursor.execute("update ump_mr set RESPONSE='Y' where mrNumber =:mrNumber and DEPOSITSTATUS ='N'",
+                                 [mr[i]])
+                cnx.commit()
+
+                messages.info(request,f"Data sended {ur}")
 
             mycur = cnx.cursor()
             for x in range(c):
