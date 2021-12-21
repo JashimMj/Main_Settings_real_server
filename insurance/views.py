@@ -1085,22 +1085,27 @@ def UMP_depositedV(request):
             print(afd)
             if afd == 'This MR has been updated for depositDate,depositedToBank fields':
                 cdate=datetime.datetime.now().date()
-
                 mycursor.execute("update ump_mr set RESPONSE='Y' where mrNumber =:mrNumber and DEPOSITSTATUS ='N'",[mr[i]])
                 cnx.commit()
                 messages.info(request,f"Data sended {ur}")
+
+            # elif afd =='This MR exists in UMP':
+            #     mycursor.execute("update ump_mr set RESPONSE='Y' where mrNumber =:mrNumber and DEPOSITSTATUS ='N'",[mr[i]])
+            #     cnx.commit()
+            #     messages.info(request, f"Data sended {ur}")
+
             else:
                 cdate = datetime.datetime.now().date()
-                mrur = ur["url"]
-                mycursor.execute(
-                    "update ump_mr set mrurl=:mrur , umpStatus='Y', sendate=:cdate where mrNumber =:mrNumber",[mrur, cdate, mr[i]])
-                cnx.commit()
+
                 mycursor.execute("update ump_mr set RESPONSE='Y' where mrNumber =:mrNumber and DEPOSITSTATUS ='N'",
                                  [mr[i]])
                 cnx.commit()
-
-                messages.info(request,f"Data sended {ur}")
-
+                mrur = ur["url"]
+                mycursor.execute(
+                    "update ump_mr set mrurl=:mrur , umpStatus='Y', sendate=:cdate where mrNumber =:mrNumber",
+                    [mrur, cdate, mr[i]])
+                cnx.commit()
+                messages.info(request, f"Data sended {ur}")
             mycur = cnx.cursor()
             for x in range(c):
                 mycur.execute("""SELECT
